@@ -18,8 +18,3 @@ def mask_account_card(name_card: str) -> str:
 def get_data(time_card: str) -> str:
     '''принимает системную дату/время, возвращает дату в формате ДД.ММ.ГГГГ'''
     return time_card[8:10] + "." + time_card[5:7] + "." + time_card[:4]
-
-
-print(mask_account_card("Счет 64686473678894779589"))
-print(mask_account_card("Visa Platinum 8990922113665229"))
-print(get_data("2024-03-11T02:26:18.671407"))
