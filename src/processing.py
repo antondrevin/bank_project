@@ -1,4 +1,5 @@
 def filter_by_state(list_state, key_state = "EXECUTED"):
+    '''Функция фильтрует словари по состоянию операции: выполнена/отменена'''
     total_state = []
     for i in list_state:
         if i["state"] == key_state:
@@ -8,6 +9,7 @@ def filter_by_state(list_state, key_state = "EXECUTED"):
 
 
 def sort_by_date(list_state, sorting = True):
+    '''функция сортирует по дате операции'''
     sorted_state = sorted(list_state, key=lambda x: x.get("date"), reverse=sorting)
 
     return sorted_state
