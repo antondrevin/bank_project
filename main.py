@@ -4,9 +4,9 @@ import os
 # Добавляем путь к папке src
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 
-from masks import get_mask_card_number, get_mask_account
-from widget import mask_account_card, get_data
-from processing import filter_by_state, sort_by_date
+from masks import get_mask_card_number, get_mask_account# type: ignore[attr-defined]
+from widget import mask_account_card, get_data# type: ignore
+from processing import filter_by_state, sort_by_date# type: ignore
 
 state_opration = [
     {'id': 41428829, 'state': 'EXECUTED', 'date': '2019-07-03T18:35:29.512364'},
