@@ -4,15 +4,26 @@ from src.masks import get_mask_card_number, get_mask_account
 def mask_account_card(name_card: str) -> str:
     """принимает катру/счет, возвращает тип карты/счет и замаскированый номер карты/счета"""
     if "счет" in name_card.lower():
-        number_card = int(name_card[-20:])
-        mask_card = get_mask_account(number_card)
-        return f"счет {mask_card}"
+        if len(name_card[5:]) == 20:
+            number_card = name_card[-20:]
+            mask_card = get_mask_account(number_card)
+            if number_card.isdigit():
+                resalt = f"счет {mask_card}"
+            else:
+                return "номер счета должен состоять только из цифр"
+        else:
+            return "введен не корректный номер счета"
 
     else:
-        type_card = name_card[:-16]
-        number_card = int(name_card[-16:])
-        mask_card = get_mask_card_number(number_card)
-        return f"{type_card} {mask_card}"
+        if len(name_card) > 16:
+            type_card = name_card[:-16]
+            number_card = name_card[-16:]
+            mask_card = get_mask_card_number(number_card)
+            if number_card.isdigit():
+                return f"{type_card}{mask_card}"
+            else:
+                return "номер карты должен состоять только из цифр"
+    return resalt
 
 
 def get_data(time_card: str) -> str:
