@@ -1,14 +1,14 @@
-from typing import Any, Generator
+from typing import Any, Generator, Iterator, Literal
 
 
-def filter_by_currency(transactions_list: list[dict], currency: str) -> Generator[dict[Any, Any]]:
+def filter_by_currency(transactions_list: list[dict], currency: Literal["USD", "RUB"]) -> Iterator[dict[Any, Any]]:
     """Функция возвращает итератор, который поочередно выдает транзакции с соответствующей валютой."""
     for i in transactions_list:
         if i["operationAmount"]["currency"]["code"] == currency:
             yield i
 
 
-def transaction_descriptions(transactions_list: list[dict]) -> Generator[list]:
+def transaction_descriptions(transactions_list: list[dict]) -> Iterator[list]:
     """Функция возвращает описание каждой операции по очереди"""
     for i in transactions_list:
         yield i["description"]
