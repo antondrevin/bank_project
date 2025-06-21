@@ -6,7 +6,7 @@ def get_mask_card_number(card_number: int | str) -> str:
     elif not card_number_str.isdigit():
         return "номер карты должен состоять только из цифр"
 
-    parts = [card_number_str[i:i + 4] for i in range(0, len(card_number_str), 4)]
+    parts = [card_number_str[i : i + 4] for i in range(0, len(card_number_str), 4)]
     masked = " ".join(parts)
     masked_list = list(masked)
 
