@@ -2,7 +2,7 @@ from typing import Any, Callable, Optional
 
 
 def write_log(message: str, filename: Optional[str]) -> None:
-    """функция записывает рпезультат выполнения функции foo в файл"""
+    """функция записывает результат выполнения функции foo в файл"""
     if filename:
         with open(filename, "a", encoding="utf-8") as f:
             f.write(message)
