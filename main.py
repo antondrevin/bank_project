@@ -7,6 +7,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 from generators import card_number_generator, filter_by_currency, transaction_descriptions  # type: ignore
 from masks import get_mask_account, get_mask_card_number  # type: ignore[attr-defined]
 from processing import filter_by_state, sort_by_date  # type: ignore
+from utils import open_json, summ_operation
 from widget import get_data, mask_account_card  # type: ignore
 
 state_opration = [
@@ -93,3 +94,5 @@ if __name__ == "__main__":
 
     for card_number in card_number_generator(77777, 77779):
         print(card_number)
+    print(open_json("data/operations.json"))
+    print(summ_operation(open_json("data/operations.json")[1]))

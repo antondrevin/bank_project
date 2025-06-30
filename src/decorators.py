@@ -12,6 +12,7 @@ def write_log(message: str, filename: Optional[str]) -> None:
 
 def log(filename: Optional[str] = None) -> Callable:
     """декоратор для логирования с настройками"""
+
     def decorator(func: Callable) -> Callable:
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             try:
