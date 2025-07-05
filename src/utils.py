@@ -1,5 +1,7 @@
 import json
 import logging
+import re
+from collections import Counter
 from typing import Any
 
 from src.external_api import converter
@@ -41,3 +43,28 @@ def summ_operation(operation: dict) -> str:
             return f"сумма транзакции {convert_currency} рублей"
     logger.error("ошибка формата")
     return "не верный формат"
+
+
+def search_transaktion(operations: list[dict], search_string: str) -> list[dict]:
+    """
+функция фильтрует список операций по заданным словам
+    """
+    resalt = []
+    re_pattern = re.compile(search_string, re.IGNORECASE)
+    for operation in operations:
+        if re_pattern.search(str(operation.get("description", ""))):
+            resalt.append(operation)
+    return resalt
+
+
+def process_bank_operations(data: list[dict], categories: list) -> dict:
+    """
+функция, которая принимает список словарей с данными о банковских операциях и список категорий операций,
+а возвращает словарь,
+в котором ключи — это названия категорий, а значения — это количество операций в каждой категории
+"""
+    count_categories = []
+    for operation in data:
+        if operation.get("description", "") in categories:
+            count_categories.append(operation.get("description", ""))
+    return dict(Counter(count_categories))
